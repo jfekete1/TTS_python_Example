@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+    </head>
+<body>
+
+<h2>Use JavaScript to send text, and receive sound</h2>
+
+<p id="demo"></p>
+
+<label for="text">Text to send to API:</label>
+<input type="text" id="text" name="text" size="20" required>
+<button onclick="myFunction()">Küldés</button>
+
+<script>
+    elem = document.getElementById("demo");
+    function myFunction() {
+        let szoveg = document.getElementById("text").value;
+        document.getElementById("text").value = "";
+        console.log(szoveg);
+        url = 'http://127.0.0.1:8080/speech?speech='
+        url = url + "\"" + szoveg + "\"";
+        fetch(url).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            document.getElementById("demo").innerHTML = szoveg;
+            const myAudio = new Audio(data.file);
+            myAudio.play();
+            // let base64data = data.speech;
+            // var link = document.createElement('a');
+            // var text = document.createTextNode('Download');
+            // link.appendChild(text);
+            // console.log("DATA: ", base64data);
+            // let mp3 = atob(base64data);
+            // link.setAttribute('href', 'data:application/octet-stream;base64,' + mp3);
+            // elem.appendChild(link);
+            
+            // console.log("THE MP3 FILE: ", mp3);
+
+        }).catch(function(e) {
+            console.log("Booo", e);
+        });
+    }
+    
+</script>
+
+</body>
+</html>
+
