@@ -29,17 +29,6 @@
             document.getElementById("demo").innerHTML = szoveg;
             const myAudio = new Audio(data.file);
             myAudio.play();
-            // let base64data = data.speech;
-            // var link = document.createElement('a');
-            // var text = document.createTextNode('Download');
-            // link.appendChild(text);
-            // console.log("DATA: ", base64data);
-            // let mp3 = atob(base64data);
-            // link.setAttribute('href', 'data:application/octet-stream;base64,' + mp3);
-            // elem.appendChild(link);
-            
-            // console.log("THE MP3 FILE: ", mp3);
-
         }).catch(function(e) {
             console.log("Booo", e);
         });
